@@ -9,7 +9,7 @@ public class EmployeePayrollServiceTest {
 
 	@Test
 	public void given3EmployeesWhenWrittenToFileShouldMatchNumberOfEmployeeEntries() {
-		EmployeePayrollData[] arrayOfEmployees = { 
+		EmployeePayrollData[] arrayOfEmployees = {
 				new EmployeePayrollData(1, "Aditya Verma", 800000.0),
 				new EmployeePayrollData(2, "Akhil Singh", 850000.0),
 				new EmployeePayrollData(3, "Anamika Bhatt", 900000.0) };
@@ -19,6 +19,15 @@ public class EmployeePayrollServiceTest {
 		payrollServiceObject.printEmployeePayrollData();
 
 		Assert.assertEquals(3, payrollServiceObject.countEnteries(IOService.FILE_IO));
+	}
+
+	@Test
+	public void given3EmployeesWhenReadFromFileShouldMatchNumberOfEmployeeEntries() {
+
+		EmployeePayrollService payrollServiceObject = new EmployeePayrollService();
+		payrollServiceObject.readEmployeeData(IOService.FILE_IO);
+		int countOfEntriesRead = payrollServiceObject.sizeOfEmployeeList();
+		Assert.assertEquals(3, countOfEntriesRead);
 	}
 
 }
